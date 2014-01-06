@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * 1997-2012 Quadra Informatique
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0) that is available
+ * through the world-wide-web at this URL: http://www.opensource.org/licenses/OSL-3.0
+ * If you are unable to obtain it through the world-wide-web, please send an email
+ * to ecommerce@quadra-informatique.fr so we can send you a copy immediately.
+ *
+ *  @author Quadra Informatique <ecommerce@quadra-informatique.fr>
+ *  @copyright 1997-2013 Quadra Informatique
+ *  @version Release: $Revision: 1.0.0 $
+ *  @license http://www.opensource.org/licenses/OSL-3.0  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <tabs>
+        <quadra translate="label" module="carousel">
+            <label>Quadra</label>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+        </quadra>
+    </tabs>
+    <sections>
+        <carousel>
+            <label>Carousel</label>
+            <tab>quadra</tab>
+            <sort_order>400</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <slide module="carousel">
+                    <label>Slide parameters</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <duration translate="label">
+                            <label>Duration of a full jump</label>
+                            <comment>in seconds</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </duration>
+                        <auto translate="label">
+                            <label>Automatic move</label>
+                            <comment>When true the Carousel will move on it's own without needing triggers. Useful for slideshows </comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </auto>
+                        <frequency translate="label">
+                            <label>Scroll frequency</label>
+                            <comment>When automatic move is true, this dictates how long a slides stays put before the next jump (in seconds)</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </frequency>
+                        <circular translate="label">
+                            <label>Circular scroll</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </circular>
+                        <wheel translate="label">
+                            <label>Use mouse wheel</label>
+                            <comment>Whether or not to slide when using the mouse wheel over the slides</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </wheel>
+                        <effect translate="label">
+                            <label>Slide effect</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>carousel/system_config_source_carousel_effect</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </effect>
+                        <transition translate="label">
+                            <label>Slide transition</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>carousel/system_config_source_carousel_transition</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </transition>
+                    </fields>
+                </slide>
+            </groups>
+        </carousel>
+    </sections>
+</config>

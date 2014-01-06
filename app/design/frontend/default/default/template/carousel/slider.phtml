@@ -1,0 +1,111 @@
+<?php
+/*
+ * 1997-2012 Quadra Informatique
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0) that is available
+ * through the world-wide-web at this URL: http://www.opensource.org/licenses/OSL-3.0
+ * If you are unable to obtain it through the world-wide-web, please send an email
+ * to ecommerce@quadra-informatique.fr so we can send you a copy immediately.
+ *
+ *  @author Quadra Informatique <ecommerce@quadra-informatique.fr>
+ *  @copyright 1997-2013 Quadra Informatique
+ *  @version Release: $Revision: 1.0.0 $
+ *  @license http://www.opensource.org/licenses/OSL-3.0  Open Software License (OSL 3.0)
+ */
+?>
+<?php if ($this->getCategoryId()): ?>
+<?php
+    $_helper = $this->helper('catalog/output');
+    $_productCollection = $this->getProductCollection();
+?>
+<div id="carousel">
+    <div class="carousel-button prev">
+        <a href="javascript:" class="carousel-control prev" rel="prev" title="Previous slide">
+            <img src="<?php echo $this->getSkinUrl('images/media/quadra_carousel/arrow_left_36x71.png') ?>" width="18" height="35" alt="Previous" />
+        </a>
+    </div>
+    <div id="carousel-wrapper">
+        <div id="carousel-content" class="category-products">
+            <?php $_iterator = 0; ?>
+            <?php $_duplicate = true; ?>
+            <ol class="products-list" id="products-list">
+                <?php while ($_duplicate): ?>
+                    <?php if (!(bool) $this->getConfigData('circular') || $this->getConfigData('effect') == 'fade') {
+                        $_duplicate = false;
+                    } ?>
+                    <?php foreach ($_productCollection as $_product): ?>
+                        <?php if ($_iterator == sizeof($_productCollection) + 1) {
+                            $_duplicate = false;
+                            break;
+                        } ?>
+                        <?php $_product = $_product->load($_product->getId()) ?>
+                        <li id="slide-<?php echo $_iterator + 1; ?>" class="slide item<?php if (++$_iterator == sizeof($_productCollection) + 1): ?> last<?php endif; ?>">
+                            <?php // Product Image  ?>
+                            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
+                            <?php // Product description ?>
+                            <div class="product-shop">
+                                <div class="f-fix">
+                                    <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+                                    <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?></a></h2>
+                                    <?php if ($_product->getRatingSummary()): ?>
+                                        <?php echo $this->getReviewsSummaryHtml($_product) ?>
+                                    <?php endif; ?>
+                                    <?php echo $this->getPriceHtml($_product, true) ?>
+                                    <?php if ($_product->isSaleable()): ?>
+                                        <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+                                        <?php else: ?>
+                                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                    <?php endif; ?>
+                                    <div class="desc std">
+                                        <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+                                        <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a>
+                                    </div>
+                                    <ul class="add-to-links">
+                                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                            <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                                        <?php endif; ?>
+                                        <?php if ($_compareUrl = $this->getAddToCompareUrl($_product)): ?>
+                                            <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                                        <?php endif; ?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                <?php endwhile; ?>
+            </ol>
+        </div>
+    </div>
+    <div class="carousel-button next">
+        <a href="javascript:" class="carousel-control next" rel="next" title="Next slide">
+            <img src="<?php echo $this->getSkinUrl('images/media/quadra_carousel/arrow_right_36x71.png') ?>" width="18" height="35" alt="Next" />
+        </a>
+    </div>
+    <script type="text/javascript">
+        decorateList('products-list', 'none-recursive')
+
+        var circular = '<?php echo (bool) $this->getConfigData('circular') ?>';
+        var effect = '<?php echo $this->getConfigData('effect') ?>';
+
+        if (effect == 'fade') circular = false;
+
+        new Carousel(
+            'carousel-wrapper',
+            $$('#carousel-content .slide'),
+            $$('a.carousel-control', 'a.carousel-jumper'),
+            {
+                duration: '<?php echo (int) $this->getConfigData('duration') ?>',
+                auto: '<?php echo (bool) $this->getConfigData('auto') ?>',
+                frequency: '<?php echo (int) $this->getConfigData('frequency') ?>',
+                circular: circular,
+                wheel: '<?php echo (bool) $this->getConfigData('wheel') ?>',
+                effect: effect,
+                transition: '<?php echo $this->getConfigData('transition') ?>'
+            }
+        );
+
+    </script>
+</div>
+<?php endif; ?>

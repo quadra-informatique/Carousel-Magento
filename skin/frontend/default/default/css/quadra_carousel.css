@@ -1,0 +1,54 @@
+/**
+ * 1997-2012 Quadra Informatique
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0) that is available
+ * through the world-wide-web at this URL: http://www.opensource.org/licenses/OSL-3.0
+ * If you are unable to obtain it through the world-wide-web, please send an email
+ * to ecommerce@quadra-informatique.fr so we can send you a copy immediately.
+ *
+ *  @author Quadra Informatique <ecommerce@quadra-informatique.fr>
+ *  @copyright 1997-2012 Quadra Informatique
+ *  @version Release: $Revision: 1.0.0 $
+ *  @license http://www.opensource.org/licenses/OSL-3.0  Open Software License (OSL 3.0)
+ */
+
+#carousel {
+    width: 685px;
+    padding: 0;
+    margin: 0;
+}
+#carousel-wrapper, #carousel-content .slide {
+    width: 635px;
+    height: 160px;
+}
+#carousel-wrapper {
+    overflow: hidden;
+}
+#carousel-content {
+    width: 2500px;
+}
+#carousel-content ol li, #carousel-content ul li {
+    list-style: none outside none;
+}
+#carousel-content .slide {
+    float: left;
+}
+#carousel-content .slide .desc {
+    width: 474px;
+}
+#carousel-wrapper, .carousel-button {
+    display: inline-block;
+    float: left;
+}
+.carousel-button {
+    width: 18px;
+    padding-top: 63px;
+}
+.carousel-button.prev {
+    padding-right: 5px;
+}
+.carousel-button.next {
+    padding-left: 5px;
+}

@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * 1997-2012 Quadra Informatique
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0) that is available
+ * through the world-wide-web at this URL: http://www.opensource.org/licenses/OSL-3.0
+ * If you are unable to obtain it through the world-wide-web, please send an email
+ * to ecommerce@quadra-informatique.fr so we can send you a copy immediately.
+ *
+ *  @author Quadra Informatique <ecommerce@quadra-informatique.fr>
+ *  @copyright 1997-2013 Quadra Informatique
+ *  @version Release: $Revision: 1.0.0 $
+ *  @license http://www.opensource.org/licenses/OSL-3.0  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Quadra_Carousel>
+            <version>1.0.0</version>
+        </Quadra_Carousel>
+    </modules>
+    <global>
+        <blocks>
+            <carousel>
+                <class>Quadra_Carousel_Block</class>
+            </carousel>
+        </blocks>
+        <helpers>
+            <carousel>
+                <class>Quadra_Carousel_Helper</class>
+            </carousel>
+        </helpers>
+        <models>
+            <carousel>
+                <class>Quadra_Carousel_Model</class>
+            </carousel>
+        </models>
+    </global>
+    <frontend>
+        <routers>
+            <carousel>
+                <use>standard</use>
+                <args>
+                    <module>Quadra_Carousel</module>
+                    <frontName>carousel</frontName>
+                </args>
+            </carousel>
+        </routers>
+        <layout>
+            <updates>
+                <carousel>
+                    <file>carousel.xml</file>
+                </carousel>
+            </updates>
+        </layout>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Quadra_Carousel>
+                    <files>
+                        <default>Quadra_Carousel.csv</default>
+                    </files>
+                </Quadra_Carousel>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+        <carousel>
+            <slide>
+                <duration><![CDATA[1]]></duration>
+                <auto><![CDATA[0]]></auto>
+                <frequency><![CDATA[3]]></frequency>
+                <circular><![CDATA[0]]></circular>
+                <wheel><![CDATA[1]]></wheel>
+                <effect><![CDATA[scroll]]></effect>
+                <transition><![CDATA[sinoidal]]></transition>
+            </slide>
+        </carousel>
+    </default>
+</config>
